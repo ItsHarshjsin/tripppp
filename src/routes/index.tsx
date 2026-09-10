@@ -1,219 +1,119 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { ClientOnly, Link } from "@tanstack/react-router";
-import { lazy, Suspense, useState } from "react";
-import { AnalogGauge } from "@/components/AnalogGauge";
-import { useTrip } from "@/lib/trip-context";
-import {
-  UNITS,
-  distanceLabel,
-  formatDuration,
-  toUnit,
-  type UnitKey,
-} from "@/lib/speed-units";
-
-const TripMap = lazy(() => import("@/components/TripMap"));
-
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ChevronRight, Flag } from "lucide-react";
+import heroCar from "@/assets/hero-car.jpeg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "GPS Speedometer — Live Speed, Distance & Trip Tracking" },
+      { title: "APEX — Own the Road" },
       {
         name: "description",
         content:
-          "A free iPhone-friendly GPS speedometer: live speed in km/h, mph, m/s or knots, analog or digital dial, max and average speed, distance and trip time on an OpenStreetMap route.",
+          "APEX is a free live GPS speedometer for your phone. Track speed, distance, trip time and route — no account, no API keys.",
       },
-      { property: "og:title", content: "GPS Speedometer — Live Speed & Trip Tracking" },
+      { property: "og:title", content: "APEX — Own the Road" },
       {
         property: "og:description",
         content:
-          "Track your real-time speed, distance and route in the browser. No account, no API keys — just your device GPS.",
+          "Live GPS speed, max & average speed, distance and trip time. Shareable drive cards. Free, in your browser.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "theme-color", content: "#0d1117" },
+      { name: "theme-color", content: "#000000" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
     ],
   }),
-  component: Index,
+  component: LandingPage,
 });
 
-function Stat({ label, value, sub }: { label: string; value: string; sub?: string }) {
+function CheckerStrip({ className = "" }: { className?: string }) {
   return (
-    <div className="surface-card min-w-0 px-4 py-3">
-      <p className="truncate text-[11px] font-medium uppercase tracking-widest text-muted-foreground">
-        {label}
-      </p>
-      <p className="tabular mt-1 truncate text-xl font-semibold">
-        {value}
-        {sub ? <span className="ml-1 text-xs font-medium text-muted-foreground">{sub}</span> : null}
-      </p>
-    </div>
+    <div
+      aria-hidden
+      className={`h-4 w-full opacity-90 ${className}`}
+      style={{
+        backgroundImage:
+          "linear-gradient(45deg, #fff 25%, #000 25%, #000 75%, #fff 75%), linear-gradient(45deg, #fff 25%, #000 25%, #000 75%, #fff 75%)",
+        backgroundSize: "16px 16px",
+        backgroundPosition: "0 0, 8px 8px",
+      }}
+    />
   );
 }
 
-function Index() {
-  const [unit, setUnit] = useState<UnitKey>("kmh");
-  const [analog, setAnalog] = useState(false);
-  const t = useTrip();
-
-  const u = UNITS[unit];
-  const speed = toUnit(t.speedMs, unit);
-  const shown = speed < 10 ? speed.toFixed(1) : Math.round(speed).toString();
-
+function LandingPage() {
   return (
-    <main className="mx-auto flex min-h-[100svh] w-full max-w-md flex-col gap-4 px-4 pb-10 pt-[max(1.5rem,env(safe-area-inset-top))]">
-      <header className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
-        <div className="min-w-0">
-          <h1 className="truncate text-2xl font-extrabold uppercase tracking-[0.14em]">
-            Apex <span className="text-primary">Speed</span>
-          </h1>
-          <p className="truncate text-xs uppercase tracking-[0.18em] text-muted-foreground">
-            {t.tracking
-              ? t.accuracy
-                ? `Live · ±${Math.round(t.accuracy)} m`
-                : "Live · acquiring signal"
-              : "Real-time GPS speedometer"}
-          </p>
+    <main className="relative flex min-h-dvh flex-col overflow-hidden bg-black text-white">
+      {/* ambient glow */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[55dvh]"
+        style={{
+          background:
+            "radial-gradient(120% 70% at 50% 100%, rgba(220,38,38,0.28) 0%, rgba(220,38,38,0.08) 45%, transparent 75%)",
+        }}
+      />
+
+      {/* header */}
+      <header className="relative z-10 flex items-center justify-between px-6 pt-[max(env(safe-area-inset-top),1.25rem)] pb-2">
+        <div className="flex items-center gap-2">
+          <span className="font-display text-lg font-black italic tracking-widest">
+            APEX
+          </span>
+          <Flag className="h-3.5 w-3.5 text-red-600" fill="currentColor" />
         </div>
-        <span
-          className={`shrink-0 rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-widest ${
-            t.tracking
-              ? "bg-primary text-primary-foreground"
-              : "bg-secondary text-muted-foreground"
-          }`}
+        <Link
+          to="/speedometer"
+          className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/60 transition-colors hover:text-white"
         >
-          {t.tracking ? "Tracking" : "Idle"}
-        </span>
+          Speedometer
+        </Link>
       </header>
 
-
-      {/* Speed display */}
-      <section className="surface-card flex flex-col items-center px-6 py-7">
-        <div className="flex w-full justify-center rounded-full bg-secondary p-1">
-          {(["Digital", "Analog"] as const).map((mode, i) => {
-            const active = analog === (i === 1);
-            return (
-              <button
-                key={mode}
-                onClick={() => setAnalog(i === 1)}
-                className={`flex-1 rounded-full py-1.5 text-sm font-medium transition-colors ${
-                  active ? "bg-card text-foreground shadow-sm" : "text-muted-foreground"
-                }`}
-              >
-                {mode}
-              </button>
-            );
-          })}
-        </div>
-
-        {analog ? (
-          <div className="mt-4 aspect-square w-full max-w-[280px]">
-            <AnalogGauge value={speed} max={u.max} unit={u.label} />
-          </div>
-        ) : (
-          <div className="flex flex-col items-center py-8">
-            <span
-              className="text-speed tabular text-[5.5rem] font-bold leading-none"
-              style={{ filter: "drop-shadow(var(--shadow-glow))" }}
-            >
-              {shown}
-            </span>
-            <span className="mt-2 text-sm font-medium uppercase tracking-[0.3em] text-muted-foreground">
-              {u.label}
-            </span>
-          </div>
-        )}
-
-        <div className="mt-4 grid w-full grid-cols-4 gap-1 rounded-full bg-secondary p-1">
-          {(Object.keys(UNITS) as UnitKey[]).map((key) => (
-            <button
-              key={key}
-              onClick={() => setUnit(key)}
-              className={`rounded-full py-1.5 text-xs font-semibold transition-colors ${
-                unit === key ? "bg-primary text-primary-foreground" : "text-muted-foreground"
-              }`}
-            >
-              {UNITS[key].short}
-            </button>
-          ))}
-        </div>
+      {/* hero copy */}
+      <section className="relative z-10 mt-4 px-6 text-center">
+        <h1 className="font-display text-[clamp(3rem,17vw,5.5rem)] leading-[0.9] font-black italic tracking-tight drop-shadow-[0_0_30px_rgba(220,38,38,0.35)]">
+          OWN THE
+          <br />
+          ROAD
+        </h1>
+        <CheckerStrip className="mx-auto mt-5 max-w-[520px]" />
+        <p className="mx-auto mt-5 max-w-xs text-sm font-medium leading-relaxed text-white/70">
+          Track your speed.
+          <br />
+          Outpace everyone.
+        </p>
       </section>
 
-      {/* Controls */}
-      <div className="flex items-center gap-3">
-        <button
-          onClick={t.tracking ? t.stop : t.start}
-          className={`h-14 flex-1 rounded-full text-base font-semibold transition-transform active:scale-[0.97] ${
-            t.tracking
-              ? "bg-destructive text-destructive-foreground"
-              : "bg-primary text-primary-foreground"
-          }`}
-        >
-          {t.tracking ? "Stop" : t.elapsedS > 0 ? "Resume" : "Start"}
-        </button>
-        <button
-          onClick={t.reset}
-          className="h-14 rounded-full border border-border bg-secondary px-6 text-base font-semibold text-foreground transition-transform active:scale-[0.97]"
-        >
-          Reset
-        </button>
+      {/* car */}
+      <div className="relative z-0 mx-auto mt-2 w-full max-w-lg flex-1">
+        <img
+          src={heroCar.url}
+          alt="Black supercar with glowing red headlights charging out of smoke"
+          className="h-full min-h-[38dvh] w-full object-cover"
+          style={{
+            maskImage:
+              "radial-gradient(90% 90% at 50% 55%, black 55%, transparent 100%)",
+            WebkitMaskImage:
+              "radial-gradient(90% 90% at 50% 55%, black 55%, transparent 100%)",
+          }}
+        />
       </div>
 
-      {t.error && (
-        <p className="rounded-2xl bg-destructive/15 px-4 py-3 text-sm text-destructive-foreground">
-          {t.error}
-        </p>
-      )}
-      {!t.supported && (
-        <p className="rounded-2xl bg-secondary px-4 py-3 text-sm text-muted-foreground">
-          This browser doesn't support location tracking.
-        </p>
-      )}
-
-      {/* Stats */}
-      <section className="grid grid-cols-2 gap-3">
-        <Stat label="Max speed" value={toUnit(t.maxSpeedMs, unit).toFixed(1)} sub={u.short} />
-        <Stat label="Avg speed" value={toUnit(t.avgSpeedMs, unit).toFixed(1)} sub={u.short} />
-        <Stat label="Distance" value={distanceLabel(t.distanceM, unit)} />
-        <Stat label="Trip time" value={formatDuration(t.elapsedS)} />
-      </section>
-
-      {/* Map */}
-      <section className="surface-card h-64 overflow-hidden">
-        <ClientOnly
-          fallback={
-            <div className="grid h-full place-items-center text-sm text-muted-foreground">
-              Loading map…
-            </div>
-          }
+      {/* CTA */}
+      <footer className="relative z-10 mt-auto px-6 pb-[max(env(safe-area-inset-bottom),2rem)]">
+        <Link
+          to="/speedometer"
+          className="group flex w-full items-center justify-center gap-2 rounded-2xl bg-red-600 px-6 py-4 text-base font-black uppercase italic tracking-[0.2em] text-white shadow-[0_0_40px_rgba(220,38,38,0.45)] transition-all active:scale-[0.98] active:bg-red-700"
         >
-          <Suspense
-            fallback={
-              <div className="grid h-full place-items-center text-sm text-muted-foreground">
-                Loading map…
-              </div>
-            }
-          >
-            <TripMap path={t.path} live={t.tracking} />
-          </Suspense>
-        </ClientOnly>
-      </section>
-      <p className="px-1 text-[9px] text-muted-foreground/25">
-        Map data © OpenStreetMap contributors
-      </p>
-
-      <Link
-        to="/export"
-        className="grid h-14 place-items-center rounded-full bg-primary text-sm font-bold uppercase tracking-widest text-primary-foreground transition-transform active:scale-[0.97]"
-      >
-        Create share card
-      </Link>
-
-      <p className="text-center text-xs text-muted-foreground">
-        Speed comes from your device's GPS. Accuracy improves outdoors with a clear sky view.
-      </p>
+          Prove It
+          <ChevronRight className="h-5 w-5 transition-transform group-active:translate-x-1" />
+        </Link>
+        <p className="mt-3 text-center text-[10px] uppercase tracking-[0.25em] text-white/30">
+          Free · No account · Uses your GPS
+        </p>
+      </footer>
     </main>
   );
 }
