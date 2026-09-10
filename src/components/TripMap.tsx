@@ -25,11 +25,11 @@ export default function TripMap({
       zoom={center ? 15 : 11}
       zoomControl={false}
       scrollWheelZoom={false}
-      attributionControl={false}
       className="h-full w-full"
     >
       <TileLayer
         url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         className="map-tiles-dark"
       />
       {path.length > 1 && (
