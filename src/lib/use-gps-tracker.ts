@@ -21,9 +21,11 @@ export function useGpsTracker() {
   const [distanceM, setDistanceM] = useState(0);
   const [elapsedS, setElapsedS] = useState(0);
   const [path, setPath] = useState<[number, number][]>([]);
+  const [speedHistory, setSpeedHistory] = useState<number[]>([]);
   const [accuracy, setAccuracy] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [supported, setSupported] = useState(true);
+
 
   const watchId = useRef<number | null>(null);
   const startedAt = useRef<number | null>(null);
