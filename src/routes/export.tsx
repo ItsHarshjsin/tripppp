@@ -36,7 +36,7 @@ function ExportPage() {
     <main className="mx-auto flex min-h-[100svh] w-full max-w-md flex-col gap-4 px-4 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-[max(1rem,env(safe-area-inset-top))]">
       <header className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3">
         <Link
-          to="/"
+          to="/speedometer"
           aria-label="Back to speedometer"
           className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-secondary text-foreground transition-transform active:scale-95"
         >
