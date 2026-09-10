@@ -155,8 +155,46 @@
     border-color: var(--color-border);
   }
 
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-display);
+    -webkit-font-smoothing: antialiased;
   }
 }
+
+@utility surface-card {
+  background-image: var(--gradient-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  border-radius: var(--radius-2xl);
+}
+
+@utility text-speed {
+  background-image: var(--gradient-speed);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Leaflet dark tuning */
+.leaflet-container {
+  background: oklch(0.16 0.012 250);
+  font-family: var(--font-display);
+}
+.leaflet-control-attribution {
+  background: oklch(0.16 0.012 250 / 70%) !important;
+  color: oklch(0.68 0.014 250) !important;
+}
+.leaflet-control-attribution a {
+  color: oklch(0.82 0.16 172) !important;
+}
+
