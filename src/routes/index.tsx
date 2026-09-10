@@ -201,7 +201,7 @@ function Index() {
           </Suspense>
         </ClientOnly>
       </section>
-      <p className="px-1 text-[9px] text-muted-foreground/60">
+      <p className="px-1 text-[9px] text-muted-foreground/25">
         Map data © OpenStreetMap contributors
       </p>
 
