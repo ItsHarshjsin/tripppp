@@ -33,15 +33,16 @@ export default function TripMap({
         className="map-tiles-dark"
       />
       {path.length > 1 && (
-        <Polyline positions={path} pathOptions={{ color: "#34d8b4", weight: 5, opacity: 0.95 }} />
+        <Polyline positions={path} pathOptions={{ color: "#ff2d3f", weight: 5, opacity: 0.95 }} />
       )}
       {center && (
         <CircleMarker
           center={center}
           radius={7}
-          pathOptions={{ color: "#0b1416", weight: 3, fillColor: "#34d8b4", fillOpacity: 1 }}
+          pathOptions={{ color: "#160a0b", weight: 3, fillColor: "#ff2d3f", fillOpacity: 1 }}
         />
       )}
+
       {live && <Follow center={center} />}
     </MapContainer>
   );

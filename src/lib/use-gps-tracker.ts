@@ -21,9 +21,11 @@ export function useGpsTracker() {
   const [distanceM, setDistanceM] = useState(0);
   const [elapsedS, setElapsedS] = useState(0);
   const [path, setPath] = useState<[number, number][]>([]);
+  const [speedHistory, setSpeedHistory] = useState<number[]>([]);
   const [accuracy, setAccuracy] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [supported, setSupported] = useState(true);
+
 
   const watchId = useRef<number | null>(null);
   const startedAt = useRef<number | null>(null);
@@ -67,6 +69,8 @@ export function useGpsTracker() {
         const now = pos.timestamp || Date.now();
         const point: [number, number] = [latitude, longitude];
         setAccuracy(acc ?? null);
+        setError(null);
+
 
         let computed = speed != null && speed >= 0 ? speed : 0;
         if (last.current) {
@@ -82,17 +86,21 @@ export function useGpsTracker() {
         }
         last.current = { coords: point, t: now };
         setSpeedMs(computed);
+        setSpeedHistory((prev) => [...prev.slice(-119), computed]);
         setMaxSpeedMs((prev) => (computed > prev ? computed : prev));
+
       },
       (err) => {
-        setError(
-          err.code === err.PERMISSION_DENIED
-            ? "Location permission denied. Enable it in Settings to track speed."
-            : "Couldn't get a GPS signal. Try again outdoors.",
-        );
-        stop();
+        if (err.code === err.PERMISSION_DENIED) {
+          setError("Location permission denied. Enable it in Settings to track speed.");
+          stop();
+          return;
+        }
+        // Transient signal loss / timeout: keep the watch alive and keep trying.
+        setError("Weak GPS signal — searching for satellites…");
       },
-      { enableHighAccuracy: true, maximumAge: 1000, timeout: 15000 },
+      { enableHighAccuracy: true, maximumAge: 1000, timeout: 30000 },
+
     );
   }, [elapsedS, stop]);
 
@@ -105,6 +113,8 @@ export function useGpsTracker() {
     setDistanceM(0);
     setElapsedS(0);
     setPath([]);
+    setSpeedHistory([]);
+
   }, [stop]);
 
   useEffect(() => () => {
@@ -121,6 +131,8 @@ export function useGpsTracker() {
     distanceM,
     elapsedS,
     path,
+    speedHistory,
+
     accuracy,
     error,
     supported,
