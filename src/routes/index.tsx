@@ -85,7 +85,7 @@ function LandingPage() {
       </p>
 
       {/* car */}
-      <div className="relative z-0 mt-3 h-[30dvh] w-full">
+      <div className="relative z-0 mt-3 min-h-[26dvh] w-full flex-1">
         <img
           src={heroCar.url}
           alt="Black supercar with glowing red headlights charging out of smoke"
