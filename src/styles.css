@@ -198,11 +198,10 @@
 }
 .leaflet-control-attribution {
   background: oklch(0.13 0.012 20 / 70%) !important;
-  color: oklch(0.66 0.016 20 / 35%) !important;
-  opacity: 0.35 !important;
+  color: oklch(0.66 0.016 20) !important;
 }
 .leaflet-control-attribution a {
-  color: oklch(0.68 0.23 27 / 45%) !important;
+  color: oklch(0.68 0.23 27) !important;
 }
 
 
