@@ -69,6 +69,8 @@ export function useGpsTracker() {
         const now = pos.timestamp || Date.now();
         const point: [number, number] = [latitude, longitude];
         setAccuracy(acc ?? null);
+        setError(null);
+
 
         let computed = speed != null && speed >= 0 ? speed : 0;
         if (last.current) {
