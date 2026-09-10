@@ -205,17 +205,12 @@ function Index() {
         Map data © OpenStreetMap contributors
       </p>
 
-      <ClientOnly fallback={null}>
-        <FlexCard
-          unit={unit}
-          maxSpeedMs={t.maxSpeedMs}
-          avgSpeedMs={t.avgSpeedMs}
-          distanceM={t.distanceM}
-          elapsedS={t.elapsedS}
-          speedHistory={t.speedHistory}
-        />
-      </ClientOnly>
-
+      <Link
+        to="/export"
+        className="grid h-14 place-items-center rounded-full bg-primary text-sm font-bold uppercase tracking-widest text-primary-foreground transition-transform active:scale-[0.97]"
+      >
+        Create share card
+      </Link>
 
       <p className="text-center text-xs text-muted-foreground">
         Speed comes from your device's GPS. Accuracy improves outdoors with a clear sky view.
