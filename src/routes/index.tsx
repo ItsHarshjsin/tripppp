@@ -1,9 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ClientOnly } from "@tanstack/react-router";
+import { ClientOnly, Link } from "@tanstack/react-router";
 import { lazy, Suspense, useState } from "react";
 import { AnalogGauge } from "@/components/AnalogGauge";
-import { FlexCard } from "@/components/FlexCard";
-import { useGpsTracker } from "@/lib/use-gps-tracker";
+import { useTrip } from "@/lib/trip-context";
 import {
   UNITS,
   distanceLabel,
@@ -57,7 +56,7 @@ function Stat({ label, value, sub }: { label: string; value: string; sub?: strin
 function Index() {
   const [unit, setUnit] = useState<UnitKey>("kmh");
   const [analog, setAnalog] = useState(false);
-  const t = useGpsTracker();
+  const t = useTrip();
 
   const u = UNITS[unit];
   const speed = toUnit(t.speedMs, unit);
@@ -205,17 +204,12 @@ function Index() {
         Map data © OpenStreetMap contributors
       </p>
 
-      <ClientOnly fallback={null}>
-        <FlexCard
-          unit={unit}
-          maxSpeedMs={t.maxSpeedMs}
-          avgSpeedMs={t.avgSpeedMs}
-          distanceM={t.distanceM}
-          elapsedS={t.elapsedS}
-          speedHistory={t.speedHistory}
-        />
-      </ClientOnly>
-
+      <Link
+        to="/export"
+        className="grid h-14 place-items-center rounded-full bg-primary text-sm font-bold uppercase tracking-widest text-primary-foreground transition-transform active:scale-[0.97]"
+      >
+        Create share card
+      </Link>
 
       <p className="text-center text-xs text-muted-foreground">
         Speed comes from your device's GPS. Accuracy improves outdoors with a clear sky view.

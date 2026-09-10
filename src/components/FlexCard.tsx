@@ -110,10 +110,7 @@ export function FlexCard(p: Props) {
 
   return (
     <section className="space-y-3">
-      <div className="flex items-center justify-between">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-muted-foreground">
-          Export preview
-        </p>
+      <div className="flex items-center justify-center">
         <div className="flex gap-1 rounded-full bg-secondary p-1">
           {BACKDROPS.map((b, i) => (
             <button
