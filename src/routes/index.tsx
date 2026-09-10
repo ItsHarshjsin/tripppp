@@ -73,7 +73,7 @@ function LandingPage() {
       </header>
 
       {/* hero copy */}
-      <section className="relative z-10 mt-8 px-6 text-center">
+      <section className="relative z-10 mt-6 px-6 text-center">
         <h1 className="font-display text-[clamp(3rem,16vw,5rem)] leading-[0.88] font-black italic tracking-tight drop-shadow-[0_0_35px_rgba(220,38,38,0.4)]">
           OWN THE
           <br />
@@ -81,11 +81,11 @@ function LandingPage() {
         </h1>
       </section>
 
-      <div className="relative z-10 mt-7 px-6">
+      <div className="relative z-10 mt-4 px-6">
         <CheckerBanner />
       </div>
 
-      <p className="relative z-10 mx-auto mt-6 max-w-xs px-6 text-center text-[15px] font-medium leading-relaxed text-white/70">
+      <p className="relative z-10 mx-auto mt-4 max-w-xs px-6 text-center text-[15px] font-medium leading-relaxed text-white/70">
         Track your speed.
         <br />
         Outpace everyone.
@@ -96,7 +96,7 @@ function LandingPage() {
         <img
           src={heroCar.url}
           alt="Black supercar with glowing red headlights charging out of smoke"
-          className="h-full w-full object-cover object-[50%_60%]"
+          className="h-full w-full object-cover object-[50%_82%]"
           style={{
             maskImage:
               "linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%)",
