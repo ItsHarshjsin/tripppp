@@ -134,9 +134,10 @@ export function FlexCard(p: Props) {
           src={backdrop.url}
           alt="Sports car at speed"
           crossOrigin="anonymous"
-          className="absolute inset-0 h-full w-full object-cover opacity-80"
+          className="absolute inset-0 h-full w-full object-cover opacity-90"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/55 to-background/85" />
+        <div className="absolute inset-0 bg-black/55" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/75 via-background/45 to-background/90" />
 
         <div className="relative px-6 py-7">
           <h2 className="text-center text-3xl font-extrabold italic tracking-[0.18em] text-primary">
