@@ -1,9 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ClientOnly } from "@tanstack/react-router";
+import { ClientOnly, Link } from "@tanstack/react-router";
 import { lazy, Suspense, useState } from "react";
 import { AnalogGauge } from "@/components/AnalogGauge";
-import { FlexCard } from "@/components/FlexCard";
-import { useGpsTracker } from "@/lib/use-gps-tracker";
+import { useTrip } from "@/lib/trip-context";
 import {
   UNITS,
   distanceLabel,
@@ -57,7 +56,7 @@ function Stat({ label, value, sub }: { label: string; value: string; sub?: strin
 function Index() {
   const [unit, setUnit] = useState<UnitKey>("kmh");
   const [analog, setAnalog] = useState(false);
-  const t = useGpsTracker();
+  const t = useTrip();
 
   const u = UNITS[unit];
   const speed = toUnit(t.speedMs, unit);
