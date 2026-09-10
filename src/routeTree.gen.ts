@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ExportRouteImport } from './routes/export'
+import { Route as SpeedometerRouteImport } from './routes/speedometer'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +23,40 @@ const ExportRoute = ExportRouteImport.update({
   path: '/export',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SpeedometerRoute = SpeedometerRouteImport.update({
+  id: '/speedometer',
+  path: '/speedometer',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/export': typeof ExportRoute
+  '/speedometer': typeof SpeedometerRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/export': typeof ExportRoute
+  '/speedometer': typeof SpeedometerRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/export': typeof ExportRoute
+  '/speedometer': typeof SpeedometerRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/export'
+  fullPaths: '/' | '/export' | '/speedometer'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/export'
-  id: '__root__' | '/' | '/export'
+  to: '/' | '/export' | '/speedometer'
+  id: '__root__' | '/' | '/export' | '/speedometer'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ExportRoute: typeof ExportRoute
+  SpeedometerRoute: typeof SpeedometerRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +75,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExportRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/speedometer': {
+      id: '/speedometer'
+      path: '/speedometer'
+      fullPath: '/speedometer'
+      preLoaderRoute: typeof SpeedometerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ExportRoute: ExportRoute,
+  SpeedometerRoute: SpeedometerRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
