@@ -34,9 +34,9 @@ function CheckerStrip({ className = "" }: { className?: string }) {
       className={`h-4 w-full opacity-90 ${className}`}
       style={{
         backgroundImage:
-          "linear-gradient(45deg, #fff 25%, #000 25%, #000 75%, #fff 75%), linear-gradient(45deg, #fff 25%, #000 25%, #000 75%, #fff 75%)",
+          "conic-gradient(#fff 0 25%, #000 0 50%, #fff 0 75%, #000 0)",
         backgroundSize: "16px 16px",
-        backgroundPosition: "0 0, 8px 8px",
+        border: "1px solid rgba(255,255,255,0.25)",
       }}
     />
   );
@@ -87,11 +87,11 @@ function LandingPage() {
       </section>
 
       {/* car */}
-      <div className="relative z-0 mx-auto mt-2 w-full max-w-lg flex-1">
+      <div className="relative z-0 mx-auto mt-2 h-[34dvh] w-full max-w-lg">
         <img
           src={heroCar.url}
           alt="Black supercar with glowing red headlights charging out of smoke"
-          className="h-full min-h-[38dvh] w-full object-cover"
+          className="h-full w-full object-cover object-[50%_70%]"
           style={{
             maskImage:
               "radial-gradient(90% 90% at 50% 55%, black 55%, transparent 100%)",
