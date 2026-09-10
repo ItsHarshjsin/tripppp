@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ClientOnly, Link } from "@tanstack/react-router";
 import { lazy, Suspense, useState } from "react";
 import { AnalogGauge } from "@/components/AnalogGauge";
+import { ChevronLeft } from "lucide-react";
 import { useTrip } from "@/lib/trip-context";
 import {
   UNITS,
@@ -64,7 +65,14 @@ function Index() {
 
   return (
     <main className="mx-auto flex min-h-[100svh] w-full max-w-md flex-col gap-4 px-4 pb-10 pt-[max(1.5rem,env(safe-area-inset-top))]">
-      <header className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
+      <header className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3">
+        <Link
+          to="/"
+          aria-label="Back to home"
+          className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-secondary text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <ChevronLeft className="h-5 w-5" />
+        </Link>
         <div className="min-w-0">
           <h1 className="truncate text-2xl font-extrabold uppercase tracking-[0.14em]">
             Apex <span className="text-primary">Speed</span>
