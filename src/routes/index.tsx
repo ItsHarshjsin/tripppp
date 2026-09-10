@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ClientOnly } from "@tanstack/react-router";
 import { lazy, Suspense, useState } from "react";
 import { AnalogGauge } from "@/components/AnalogGauge";
+import { FlexCard } from "@/components/FlexCard";
 import { useGpsTracker } from "@/lib/use-gps-tracker";
 import {
   UNITS,
@@ -12,6 +13,7 @@ import {
 } from "@/lib/speed-units";
 
 const TripMap = lazy(() => import("@/components/TripMap"));
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -65,25 +67,28 @@ function Index() {
     <main className="mx-auto flex min-h-[100svh] w-full max-w-md flex-col gap-4 px-4 pb-10 pt-[max(1.5rem,env(safe-area-inset-top))]">
       <header className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
         <div className="min-w-0">
-          <h1 className="truncate text-2xl font-bold tracking-tight">GPS Speedometer</h1>
-          <p className="truncate text-sm text-muted-foreground">
+          <h1 className="truncate text-2xl font-extrabold uppercase tracking-[0.14em]">
+            Apex <span className="text-primary">Speed</span>
+          </h1>
+          <p className="truncate text-xs uppercase tracking-[0.18em] text-muted-foreground">
             {t.tracking
               ? t.accuracy
-                ? `Live · ±${Math.round(t.accuracy)} m accuracy`
+                ? `Live · ±${Math.round(t.accuracy)} m`
                 : "Live · acquiring signal"
-              : "Real-time speed from your device GPS"}
+              : "Real-time GPS speedometer"}
           </p>
         </div>
         <span
-          className={`shrink-0 rounded-full px-3 py-1 text-[11px] font-semibold ${
+          className={`shrink-0 rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-widest ${
             t.tracking
-              ? "bg-primary/15 text-primary"
+              ? "bg-primary text-primary-foreground"
               : "bg-secondary text-muted-foreground"
           }`}
         >
-          {t.tracking ? "TRACKING" : "IDLE"}
+          {t.tracking ? "Tracking" : "Idle"}
         </span>
       </header>
+
 
       {/* Speed display */}
       <section className="surface-card flex flex-col items-center px-6 py-7">
