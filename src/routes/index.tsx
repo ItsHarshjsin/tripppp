@@ -202,6 +202,18 @@ function Index() {
         </ClientOnly>
       </section>
 
+      <ClientOnly fallback={null}>
+        <FlexCard
+          unit={unit}
+          maxSpeedMs={t.maxSpeedMs}
+          avgSpeedMs={t.avgSpeedMs}
+          distanceM={t.distanceM}
+          elapsedS={t.elapsedS}
+          speedHistory={t.speedHistory}
+        />
+      </ClientOnly>
+
+
       <p className="text-center text-xs text-muted-foreground">
         Speed comes from your device's GPS. Accuracy improves outdoors with a clear sky view.
       </p>
