@@ -32,23 +32,17 @@ export const Route = createFileRoute("/")({
 function CheckerBanner() {
   return (
     <div aria-hidden className="relative -mx-5 w-screen overflow-hidden py-2">
-      <div
-        className="-ml-[15%] w-[130%] -rotate-[6deg]"
-        style={{
-          boxShadow:
-            "0 0 24px 4px rgba(232,18,31,0.55), 0 0 60px 10px rgba(232,18,31,0.35)",
-        }}
-      >
-        <div className="h-[3px] w-full bg-red-600" />
+      <div className="-ml-[15%] w-[130%] -rotate-[6deg]">
+        <div className="h-[2px] w-full bg-red-600" />
         <div
-          className="h-9 w-full"
+          className="h-5 w-full"
           style={{
             backgroundImage:
               "conic-gradient(#f5f5f5 0 25%, #0a0a0a 0 50%, #f5f5f5 0 75%, #0a0a0a 0)",
-            backgroundSize: "16px 16px",
+            backgroundSize: "12px 12px",
           }}
         />
-        <div className="h-[3px] w-full bg-red-600" />
+        <div className="h-[2px] w-full bg-red-600" />
       </div>
     </div>
   );
