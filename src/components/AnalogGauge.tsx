@@ -92,18 +92,20 @@ export function AnalogGauge({ value, max, unit }: Props) {
       <circle cx="120" cy="120" r="8" fill="var(--color-card)" stroke="var(--color-accent)" strokeWidth="3" />
       <text
         x="120"
-        y="172"
+        y="220"
         textAnchor="middle"
-        fontSize="30"
+        fontSize="26"
         fontWeight="700"
         fill="var(--color-foreground)"
         style={{ fontVariantNumeric: "tabular-nums" }}
       >
         {clamped < 10 ? clamped.toFixed(1) : Math.round(clamped)}
+        <tspan fontSize="12" fontWeight="500" fill="var(--color-muted-foreground)">
+          {" "}
+          {unit}
+        </tspan>
       </text>
-      <text x="120" y="192" textAnchor="middle" fontSize="12" fill="var(--color-muted-foreground)">
-        {unit}
-      </text>
+
     </svg>
   );
 }

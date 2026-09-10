@@ -200,5 +200,5 @@
 
 
 .map-tiles-dark {
-  filter: invert(1) hue-rotate(180deg) brightness(0.92) contrast(0.92) saturate(0.7);
+  filter: invert(1) hue-rotate(180deg) brightness(0.68) contrast(1.05) saturate(0.35);
 }
