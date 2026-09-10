@@ -84,7 +84,9 @@ export function useGpsTracker() {
         }
         last.current = { coords: point, t: now };
         setSpeedMs(computed);
+        setSpeedHistory((prev) => [...prev.slice(-119), computed]);
         setMaxSpeedMs((prev) => (computed > prev ? computed : prev));
+
       },
       (err) => {
         setError(
@@ -107,6 +109,8 @@ export function useGpsTracker() {
     setDistanceM(0);
     setElapsedS(0);
     setPath([]);
+    setSpeedHistory([]);
+
   }, [stop]);
 
   useEffect(() => () => {
@@ -123,6 +127,8 @@ export function useGpsTracker() {
     distanceM,
     elapsedS,
     path,
+    speedHistory,
+
     accuracy,
     error,
     supported,
