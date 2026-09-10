@@ -32,7 +32,7 @@ export const Route = createFileRoute("/")({
 function CheckerBanner() {
   return (
     <div aria-hidden className="relative w-screen overflow-hidden py-4">
-        <div className="-ml-[20%] w-[140%] -rotate-[6deg]">
+        <div className="-ml-[35%] w-[170%] -rotate-[6deg]">
           <div className="w-full">
             <div className="h-[2px] w-full bg-red-600" />
             <div
