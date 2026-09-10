@@ -17,7 +17,7 @@ export default function TripMap({
   path: [number, number][];
   live: boolean;
 }) {
-  const center = path.length ? path[path.length - 1] : null;
+  const center: [number, number] | null = path[path.length - 1] ?? null;
 
   return (
     <MapContainer
