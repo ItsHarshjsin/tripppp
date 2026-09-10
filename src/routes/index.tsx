@@ -201,6 +201,9 @@ function Index() {
           </Suspense>
         </ClientOnly>
       </section>
+      <p className="px-1 text-[9px] text-muted-foreground/60">
+        Map data © OpenStreetMap contributors
+      </p>
 
       <ClientOnly fallback={null}>
         <FlexCard
