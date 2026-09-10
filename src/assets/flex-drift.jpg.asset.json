@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "3d03e549-5c79-4441-9654-db0efec14d19",
-  "project_id": "89725600-60e7-4b9a-ab87-93f52d74148a",
-  "url": "/__l5e/assets-v1/3d03e549-5c79-4441-9654-db0efec14d19/flex-drift.jpg",
-  "r2_key": "a/v1/89725600-60e7-4b9a-ab87-93f52d74148a/3d03e549-5c79-4441-9654-db0efec14d19/flex-drift.jpg",
-  "original_filename": "flex-drift.jpg",
-  "size": 287444,
   "content_type": "image/jpeg",
-  "created_at": "2026-09-10T14:12:53Z"
+  "created_at": "2026-09-10T14:12:53Z",
+  "original_filename": "flex-drift.jpg",
+  "project_id": "d46236a7-db4a-4b1b-a88b-dad5a7ffe836",
+  "r2_key": "a/v1/d46236a7-db4a-4b1b-a88b-dad5a7ffe836/3d03e549-5c79-4441-9654-db0efec14d19/flex-drift.jpg",
+  "size": 287444,
+  "url": "/__l5e/assets-v1/3d03e549-5c79-4441-9654-db0efec14d19/flex-drift.jpg",
+  "version": 1
 }
