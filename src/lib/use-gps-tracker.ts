@@ -89,14 +89,16 @@ export function useGpsTracker() {
 
       },
       (err) => {
-        setError(
-          err.code === err.PERMISSION_DENIED
-            ? "Location permission denied. Enable it in Settings to track speed."
-            : "Couldn't get a GPS signal. Try again outdoors.",
-        );
-        stop();
+        if (err.code === err.PERMISSION_DENIED) {
+          setError("Location permission denied. Enable it in Settings to track speed.");
+          stop();
+          return;
+        }
+        // Transient signal loss / timeout: keep the watch alive and keep trying.
+        setError("Weak GPS signal — searching for satellites…");
       },
-      { enableHighAccuracy: true, maximumAge: 1000, timeout: 15000 },
+      { enableHighAccuracy: true, maximumAge: 1000, timeout: 30000 },
+
     );
   }, [elapsedS, stop]);
 
