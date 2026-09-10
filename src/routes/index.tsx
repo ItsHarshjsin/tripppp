@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ChevronRight, Flag } from "lucide-react";
 import heroCar from "@/assets/hero-car.jpeg.asset.json";
 
 export const Route = createFileRoute("/")({
@@ -21,98 +20,105 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
       { name: "theme-color", content: "#000000" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
-      { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
+      {
+        name: "apple-mobile-web-app-status-bar-style",
+        content: "black-translucent",
+      },
     ],
   }),
   component: LandingPage,
 });
 
-function CheckerStrip({ className = "" }: { className?: string }) {
+function CheckerBanner() {
   return (
-    <div
-      aria-hidden
-      className={`h-4 w-full opacity-90 ${className}`}
-      style={{
-        backgroundImage:
-          "conic-gradient(#fff 0 25%, #000 0 50%, #fff 0 75%, #000 0)",
-        backgroundSize: "16px 16px",
-        border: "1px solid rgba(255,255,255,0.25)",
-      }}
-    />
+    <div aria-hidden className="relative w-screen -mx-6 overflow-hidden py-3">
+      <div className="w-[130%] -ml-[15%] -rotate-[6deg]">
+        <div className="h-[3px] w-full bg-red-600" />
+        <div
+          className="h-7 w-full"
+          style={{
+            backgroundImage:
+              "conic-gradient(#fff 0 25%, #0a0a0a 0 50%, #fff 0 75%, #0a0a0a 0)",
+            backgroundSize: "14px 14px",
+          }}
+        />
+        <div className="h-[3px] w-full bg-red-600" />
+      </div>
+    </div>
   );
 }
 
 function LandingPage() {
   return (
     <main className="relative flex min-h-dvh flex-col overflow-hidden bg-black text-white">
-      {/* ambient glow */}
+      {/* ambient red glow behind car */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-[55dvh]"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[60dvh]"
         style={{
           background:
-            "radial-gradient(120% 70% at 50% 100%, rgba(220,38,38,0.28) 0%, rgba(220,38,38,0.08) 45%, transparent 75%)",
+            "radial-gradient(120% 70% at 50% 85%, rgba(220,38,38,0.30) 0%, rgba(220,38,38,0.08) 45%, transparent 75%)",
         }}
       />
 
-      {/* header */}
-      <header className="relative z-10 flex items-center justify-between px-6 pt-[max(env(safe-area-inset-top),1.25rem)] pb-2">
-        <div className="flex items-center gap-2">
-          <span className="font-display text-lg font-black italic tracking-widest">
-            APEX
-          </span>
-          <Flag className="h-3.5 w-3.5 text-red-600" fill="currentColor" />
+      {/* logo */}
+      <header className="relative z-10 px-6 pt-[max(env(safe-area-inset-top),1.5rem)]">
+        <span className="font-display block text-2xl font-black italic tracking-[0.15em]">
+          APEX
+        </span>
+        <div className="mt-2 flex items-center gap-1.5">
+          <span className="h-[3px] w-10 bg-red-600" />
+          <span className="h-[3px] w-4 bg-white/25" />
         </div>
-        <Link
-          to="/speedometer"
-          className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/60 transition-colors hover:text-white"
-        >
-          Speedometer
-        </Link>
       </header>
 
       {/* hero copy */}
-      <section className="relative z-10 mt-4 px-6 text-center">
-        <h1 className="font-display text-[clamp(3rem,17vw,5.5rem)] leading-[0.9] font-black italic tracking-tight drop-shadow-[0_0_30px_rgba(220,38,38,0.35)]">
+      <section className="relative z-10 mt-8 px-6 text-center">
+        <h1 className="font-display text-[clamp(3rem,16vw,5rem)] leading-[0.88] font-black italic tracking-tight drop-shadow-[0_0_35px_rgba(220,38,38,0.4)]">
           OWN THE
           <br />
           ROAD
         </h1>
-        <CheckerStrip className="mx-auto mt-5 max-w-[520px]" />
-        <p className="mx-auto mt-5 max-w-xs text-sm font-medium leading-relaxed text-white/70">
-          Track your speed.
-          <br />
-          Outpace everyone.
-        </p>
       </section>
 
+      <div className="relative z-10 mt-7 px-6">
+        <CheckerBanner />
+      </div>
+
+      <p className="relative z-10 mx-auto mt-6 max-w-xs px-6 text-center text-[15px] font-medium leading-relaxed text-white/70">
+        Track your speed.
+        <br />
+        Outpace everyone.
+      </p>
+
       {/* car */}
-      <div className="relative z-0 mx-auto mt-2 h-[34dvh] w-full max-w-lg">
+      <div className="relative z-0 -mt-2 min-h-0 flex-1">
         <img
           src={heroCar.url}
           alt="Black supercar with glowing red headlights charging out of smoke"
-          className="h-full w-full object-cover object-[50%_70%]"
+          className="h-full w-full object-cover object-[50%_60%]"
           style={{
             maskImage:
-              "radial-gradient(90% 90% at 50% 55%, black 55%, transparent 100%)",
+              "linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%)",
             WebkitMaskImage:
-              "radial-gradient(90% 90% at 50% 55%, black 55%, transparent 100%)",
+              "linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%)",
           }}
         />
       </div>
 
-      {/* CTA */}
-      <footer className="relative z-10 mt-auto px-6 pb-[max(env(safe-area-inset-bottom),2rem)]">
+      {/* CTA — skewed red bar */}
+      <footer className="relative z-10 px-6 pb-[max(env(safe-area-inset-bottom),1.5rem)]">
         <Link
           to="/speedometer"
-          className="group flex w-full items-center justify-center gap-2 rounded-2xl bg-red-600 px-6 py-4 text-base font-black uppercase italic tracking-[0.2em] text-white shadow-[0_0_40px_rgba(220,38,38,0.45)] transition-all active:scale-[0.98] active:bg-red-700"
+          className="block w-full -skew-x-[12deg] bg-red-600 py-4 text-center shadow-[0_0_45px_rgba(220,38,38,0.5)] transition-transform active:scale-[0.98]"
         >
-          Prove It
-          <ChevronRight className="h-5 w-5 transition-transform group-active:translate-x-1" />
+          <span className="font-display block skew-x-[12deg] text-xl font-black italic tracking-[0.12em] text-white">
+            PROVE IT
+          </span>
         </Link>
-        <p className="mt-3 text-center text-[10px] uppercase tracking-[0.25em] text-white/30">
-          Free · No account · Uses your GPS
-        </p>
+        <div className="mt-5 flex justify-end">
+          <span className="h-[2px] w-24 bg-red-600/70" />
+        </div>
       </footer>
     </main>
   );
