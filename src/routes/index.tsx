@@ -31,18 +31,18 @@ export const Route = createFileRoute("/")({
 
 function CheckerBanner() {
   return (
-    <div aria-hidden className="relative w-screen -mx-6 overflow-hidden py-3">
-      <div className="w-[130%] -ml-[15%] -rotate-[6deg]">
-        <div className="h-[3px] w-full bg-red-600" />
+    <div aria-hidden className="relative -mx-5 w-screen overflow-hidden py-2">
+      <div className="-ml-[15%] w-[130%] -rotate-[6deg]">
+        <div className="h-[2px] w-full bg-red-600" />
         <div
-          className="h-7 w-full"
+          className="h-5 w-full"
           style={{
             backgroundImage:
-              "conic-gradient(#fff 0 25%, #0a0a0a 0 50%, #fff 0 75%, #0a0a0a 0)",
-            backgroundSize: "14px 14px",
+              "conic-gradient(#f5f5f5 0 25%, #0a0a0a 0 50%, #f5f5f5 0 75%, #0a0a0a 0)",
+            backgroundSize: "12px 12px",
           }}
         />
-        <div className="h-[3px] w-full bg-red-600" />
+        <div className="h-[2px] w-full bg-red-600" />
       </div>
     </div>
   );
@@ -50,74 +50,70 @@ function CheckerBanner() {
 
 function LandingPage() {
   return (
-    <main className="relative flex min-h-dvh flex-col overflow-hidden bg-black text-white">
-      {/* ambient red glow behind car */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-[60dvh]"
-        style={{
-          background:
-            "radial-gradient(120% 70% at 50% 85%, rgba(220,38,38,0.30) 0%, rgba(220,38,38,0.08) 45%, transparent 75%)",
-        }}
-      />
-
+    <main className="relative flex h-dvh flex-col overflow-hidden bg-black text-white">
       {/* logo */}
-      <header className="relative z-10 px-6 pt-[max(env(safe-area-inset-top),1.5rem)]">
-        <span className="font-display block text-2xl font-black italic tracking-[0.15em]">
-          APEX
-        </span>
-        <div className="mt-2 flex items-center gap-1.5">
-          <span className="h-[3px] w-10 bg-red-600" />
-          <span className="h-[3px] w-4 bg-white/25" />
+      <header className="relative z-10 flex items-end justify-between px-5 pt-[max(env(safe-area-inset-top),1.25rem)]">
+        <div>
+          <span className="font-display block text-xl font-black italic leading-none tracking-[0.18em]">
+            APEX
+          </span>
+          <div className="mt-2 flex items-center gap-1">
+            <span className="h-[3px] w-8 bg-red-600" />
+            <span className="h-[3px] w-3 bg-white/20" />
+          </div>
         </div>
+        <span className="pb-1 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/40">
+          GPS Speedometer
+        </span>
       </header>
 
       {/* hero copy */}
-      <section className="relative z-10 mt-6 px-6 text-center">
-        <h1 className="font-display text-[clamp(3rem,16vw,5rem)] leading-[0.88] font-black italic tracking-tight drop-shadow-[0_0_35px_rgba(220,38,38,0.4)]">
+      <section className="relative z-10 mt-5 px-5 text-center">
+        <h1 className="font-display text-[clamp(2.6rem,13.5vw,4.25rem)] font-black italic leading-[0.9] tracking-tight">
           OWN THE
           <br />
           ROAD
         </h1>
       </section>
 
-      <div className="relative z-10 mt-4 px-6">
+      <div className="relative z-10 mt-4">
         <CheckerBanner />
       </div>
 
-      <p className="relative z-10 mx-auto mt-4 max-w-xs px-6 text-center text-[15px] font-medium leading-relaxed text-white/70">
-        Track your speed.
-        <br />
-        Outpace everyone.
+      <p className="relative z-10 mt-3 px-5 text-center text-[13px] font-medium uppercase leading-relaxed tracking-[0.2em] text-white/55">
+        Track your speed · Outpace everyone
       </p>
 
       {/* car */}
-      <div className="relative z-0 -mt-2 h-[38dvh] min-h-0 w-full shrink">
+      <div className="relative z-0 mt-3 h-[30dvh] w-full">
         <img
           src={heroCar.url}
           alt="Black supercar with glowing red headlights charging out of smoke"
-          className="h-full w-full object-cover object-[50%_82%]"
+          className="h-full w-full object-cover object-[50%_80%]"
           style={{
             maskImage:
-              "linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%)",
+              "linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%)",
             WebkitMaskImage:
-              "linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%)",
+              "linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%)",
           }}
         />
       </div>
 
       {/* CTA — skewed red bar */}
-      <footer className="relative z-10 mt-auto px-6 pb-[max(env(safe-area-inset-bottom),1.5rem)]">
+      <footer className="relative z-10 mt-auto px-5 pb-[max(env(safe-area-inset-bottom),1.25rem)]">
         <Link
           to="/speedometer"
-          className="block w-full -skew-x-[12deg] bg-red-600 py-4 text-center shadow-[0_0_45px_rgba(220,38,38,0.5)] transition-transform active:scale-[0.98]"
+          className="block w-full -skew-x-[12deg] rounded-sm bg-red-600 py-3.5 text-center transition-transform active:scale-[0.98]"
         >
-          <span className="font-display block skew-x-[12deg] text-xl font-black italic tracking-[0.12em] text-white">
+          <span className="font-display block skew-x-[12deg] text-lg font-black italic tracking-[0.14em] text-white">
             PROVE IT
           </span>
         </Link>
-        <div className="mt-5 flex justify-end">
-          <span className="h-[2px] w-24 bg-red-600/70" />
+        <div className="mt-4 flex items-center justify-between">
+          <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/35">
+            Free · No sign-up
+          </span>
+          <span className="h-[2px] w-20 bg-red-600/60" />
         </div>
       </footer>
     </main>
