@@ -198,3 +198,7 @@
   color: oklch(0.82 0.16 172) !important;
 }
 
+
+.map-tiles-dark {
+  filter: invert(1) hue-rotate(180deg) brightness(0.92) contrast(0.92) saturate(0.7);
+}
