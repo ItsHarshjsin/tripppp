@@ -1,6 +1,6 @@
 type Props = { value: number; max: number; unit: string };
 
-const START = 135;
+const START = 225;
 const SWEEP = 270;
 
 const polar = (cx: number, cy: number, r: number, deg: number) => {

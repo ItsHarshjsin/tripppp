@@ -28,8 +28,9 @@ export default function TripMap({
       className="h-full w-full"
     >
       <TileLayer
-        url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        className="map-tiles-dark"
       />
       {path.length > 1 && (
         <Polyline positions={path} pathOptions={{ color: "#34d8b4", weight: 5, opacity: 0.95 }} />
