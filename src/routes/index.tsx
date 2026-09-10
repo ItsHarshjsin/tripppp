@@ -92,7 +92,7 @@ function LandingPage() {
       </p>
 
       {/* car */}
-      <div className="relative z-0 -mt-2 min-h-0 flex-1">
+      <div className="relative z-0 -mt-2 h-[38dvh] min-h-0 w-full shrink">
         <img
           src={heroCar.url}
           alt="Black supercar with glowing red headlights charging out of smoke"
@@ -107,7 +107,7 @@ function LandingPage() {
       </div>
 
       {/* CTA — skewed red bar */}
-      <footer className="relative z-10 px-6 pb-[max(env(safe-area-inset-bottom),1.5rem)]">
+      <footer className="relative z-10 mt-auto px-6 pb-[max(env(safe-area-inset-bottom),1.5rem)]">
         <Link
           to="/speedometer"
           className="block w-full -skew-x-[12deg] bg-red-600 py-4 text-center shadow-[0_0_45px_rgba(220,38,38,0.5)] transition-transform active:scale-[0.98]"
