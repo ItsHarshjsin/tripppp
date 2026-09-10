@@ -80,8 +80,10 @@ function LandingPage() {
         <CheckerBanner />
       </div>
 
-      <p className="relative z-10 mt-3 px-5 text-center text-[13px] font-medium uppercase leading-relaxed tracking-[0.2em] text-white/55">
-        Track your speed · Outpace everyone
+      <p className="relative z-10 mt-3 px-5 text-center text-sm font-medium leading-relaxed text-white/60">
+        Track your speed.
+        <br />
+        Outpace everyone.
       </p>
 
       {/* car */}
