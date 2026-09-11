@@ -10,7 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ExportRouteImport } from './routes/export'
+import { Route as LeaderboardRouteImport } from './routes/leaderboard'
 import { Route as SpeedometerRouteImport } from './routes/speedometer'
 
 const IndexRoute = IndexRouteImport.update({
@@ -18,9 +20,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ExportRoute = ExportRouteImport.update({
   id: '/export',
   path: '/export',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeaderboardRoute = LeaderboardRouteImport.update({
+  id: '/leaderboard',
+  path: '/leaderboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SpeedometerRoute = SpeedometerRouteImport.update({
@@ -31,31 +43,45 @@ const SpeedometerRoute = SpeedometerRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
   '/export': typeof ExportRoute
+  '/leaderboard': typeof LeaderboardRoute
   '/speedometer': typeof SpeedometerRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
   '/export': typeof ExportRoute
+  '/leaderboard': typeof LeaderboardRoute
   '/speedometer': typeof SpeedometerRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
   '/export': typeof ExportRoute
+  '/leaderboard': typeof LeaderboardRoute
   '/speedometer': typeof SpeedometerRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/export' | '/speedometer'
+  fullPaths: '/' | '/dashboard' | '/export' | '/leaderboard' | '/speedometer'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/export' | '/speedometer'
-  id: '__root__' | '/' | '/export' | '/speedometer'
+  to: '/' | '/dashboard' | '/export' | '/leaderboard' | '/speedometer'
+  id:
+    | '__root__'
+    | '/'
+    | '/dashboard'
+    | '/export'
+    | '/leaderboard'
+    | '/speedometer'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DashboardRoute: typeof DashboardRoute
   ExportRoute: typeof ExportRoute
+  LeaderboardRoute: typeof LeaderboardRoute
   SpeedometerRoute: typeof SpeedometerRoute
 }
 
@@ -68,11 +94,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/export': {
       id: '/export'
       path: '/export'
       fullPath: '/export'
       preLoaderRoute: typeof ExportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/leaderboard': {
+      id: '/leaderboard'
+      path: '/leaderboard'
+      fullPath: '/leaderboard'
+      preLoaderRoute: typeof LeaderboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/speedometer': {
@@ -87,7 +127,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DashboardRoute: DashboardRoute,
   ExportRoute: ExportRoute,
+  LeaderboardRoute: LeaderboardRoute,
   SpeedometerRoute: SpeedometerRoute,
 }
 export const routeTree = rootRouteImport
