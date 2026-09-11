@@ -63,35 +63,35 @@ function LandingPage() {
         <CheckerBanner />
       </div>
 
-      <p className="relative z-10 mt-2 px-5 text-center text-[14px] font-normal leading-[1.5] text-foreground/90">
+      <p className="relative z-10 mt-3 px-5 text-center text-[14px] font-normal leading-[1.55] text-foreground">
         Track your speed.
         <br />
         Outpace everyone.
       </p>
 
       {/* car */}
-      <div className="relative z-0 mt-3 h-[30dvh] w-full shrink-0">
+      <div className="relative z-0 mt-2 w-full flex-1 min-h-0">
         <img
           src={heroCar.url}
           alt="Black supercar with glowing red headlights charging out of smoke"
-          className="h-full w-full object-cover object-[50%_76%]"
+          className="h-full w-full object-cover object-[50%_68%]"
           style={{
             maskImage:
-              "linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%)",
+              "linear-gradient(to bottom, transparent 0%, black 16%, black 82%, transparent 100%)",
             WebkitMaskImage:
-              "linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%)",
+              "linear-gradient(to bottom, transparent 0%, black 16%, black 82%, transparent 100%)",
           }}
         />
       </div>
 
       {/* CTA — skewed red bar */}
-      <footer className="relative z-10 mt-8 flex justify-center px-5 pb-[max(env(safe-area-inset-bottom),1.25rem)]">
+      <footer className="relative z-10 mt-4 flex justify-center px-5 pb-[max(env(safe-area-inset-bottom),1.5rem)]">
         <Link
           to="/speedometer"
           className="cta-frame block w-[86%] max-w-[350px] p-[2px] transition-transform active:scale-[0.98]"
         >
-          <span className="cta-fill flex h-[50px] items-center justify-center">
-            <span className="font-display text-lg font-black italic text-primary-foreground">
+          <span className="cta-fill flex h-[52px] items-center justify-center">
+            <span className="font-display text-lg font-black italic tracking-wide text-primary-foreground">
               PROVE IT
             </span>
           </span>
