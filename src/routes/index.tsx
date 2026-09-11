@@ -54,7 +54,7 @@ function LandingPage() {
   return (
     <main className="relative flex h-dvh flex-col overflow-hidden bg-black text-white">
       {/* logo */}
-      <header className="relative z-10 flex items-end justify-between px-5 pt-[max(env(safe-area-inset-top),1.25rem)]">
+      <header className="relative z-10 px-5 pt-[max(env(safe-area-inset-top),1.25rem)]">
         <div>
           <span className="font-display block text-xl font-black italic leading-none tracking-[0.18em]">
             APEX
@@ -64,9 +64,6 @@ function LandingPage() {
             <span className="h-[3px] w-3 bg-white/20" />
           </div>
         </div>
-        <span className="pb-1 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/40">
-          GPS Speedometer
-        </span>
       </header>
 
       {/* hero copy */}
@@ -107,18 +104,12 @@ function LandingPage() {
       <footer className="relative z-10 mt-auto px-5 pb-[max(env(safe-area-inset-bottom),1.25rem)]">
         <Link
           to="/speedometer"
-          className="block w-full -skew-x-[12deg] rounded-sm bg-red-600 py-3.5 text-center transition-transform active:scale-[0.98]"
+          className="block w-full -skew-x-[12deg] rounded-sm border border-white/90 bg-red-600 py-3.5 text-center transition-transform active:scale-[0.98]"
         >
           <span className="font-display block skew-x-[12deg] text-lg font-black italic tracking-[0.14em] text-white">
             PROVE IT
           </span>
         </Link>
-        <div className="mt-4 flex items-center justify-between">
-          <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/35">
-            Free · No sign-up
-          </span>
-          <span className="h-[2px] w-20 bg-red-600/60" />
-        </div>
       </footer>
     </main>
   );
