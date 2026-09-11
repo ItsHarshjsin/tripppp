@@ -63,14 +63,14 @@ function LandingPage() {
         <CheckerBanner />
       </div>
 
-      <p className="relative z-10 mt-1 px-5 text-center text-[15px] font-normal leading-[1.45] text-foreground/90">
+      <p className="relative z-10 mt-2 px-5 text-center text-[14px] font-normal leading-[1.5] text-foreground/90">
         Track your speed.
         <br />
         Outpace everyone.
       </p>
 
       {/* car */}
-      <div className="relative z-0 mt-1 min-h-[29dvh] w-full flex-1">
+      <div className="relative z-0 mt-3 h-[30dvh] w-full shrink-0">
         <img
           src={heroCar.url}
           alt="Black supercar with glowing red headlights charging out of smoke"
@@ -85,7 +85,7 @@ function LandingPage() {
       </div>
 
       {/* CTA — skewed red bar */}
-      <footer className="relative z-10 mt-auto flex justify-center px-5 pb-[max(env(safe-area-inset-bottom),1.25rem)] pt-1">
+      <footer className="relative z-10 mt-8 flex justify-center px-5 pb-[max(env(safe-area-inset-bottom),1.25rem)]">
         <Link
           to="/speedometer"
           className="cta-frame block w-[86%] max-w-[350px] p-[2px] transition-transform active:scale-[0.98]"
