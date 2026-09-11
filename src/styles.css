@@ -112,6 +112,8 @@
   );
   --shadow-glow: 0 0 60px -12px oklch(0.58 0.235 27 / 60%);
   --shadow-card: 0 20px 40px -24px oklch(0 0 0 / 85%);
+  --checker-light: oklch(0.97 0 0);
+  --checker-dark: oklch(0.08 0 0);
 }
 
 
@@ -165,6 +167,61 @@
     color: var(--color-foreground);
     font-family: var(--font-display);
     -webkit-font-smoothing: antialiased;
+  }
+}
+
+.landing-shell {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100dvh;
+  min-height: 568px;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.checker-window {
+  position: relative;
+  width: 100vw;
+  height: 48px;
+  overflow: hidden;
+}
+
+.checker-ribbon {
+  position: absolute;
+  top: 50%;
+  left: -25vw;
+  width: 150vw;
+  height: 20px;
+  transform: translateY(-50%) rotate(-5deg);
+  border-block: 2px solid var(--primary);
+  background-image: conic-gradient(
+    var(--checker-light) 0 25%,
+    var(--checker-dark) 0 50%,
+    var(--checker-light) 0 75%,
+    var(--checker-dark) 0
+  );
+  background-size: 16px 16px;
+}
+
+.cta-frame,
+.cta-fill {
+  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+}
+
+.cta-frame {
+  background: var(--foreground);
+}
+
+.cta-fill {
+  background: var(--primary);
+}
+
+@media (max-height: 667px) {
+  .checker-window {
+    height: 42px;
   }
 }
 
