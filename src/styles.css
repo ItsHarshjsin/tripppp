@@ -195,7 +195,7 @@
   left: -25vw;
   width: 150vw;
   height: 20px;
-  transform: translateY(-50%) rotate(-5deg);
+  transform: translateY(-50%) rotate(4deg);
   border-block: 2px solid var(--primary);
   background-image: conic-gradient(
     var(--checker-light) 0 25%,
